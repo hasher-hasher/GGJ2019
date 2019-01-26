@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     private Vector2 moveDirection;
 
-    public float moveSpeed = 0f;
+    public float moveSpeed;
 
     // Is the enemy heading the house?
     public bool headingHouse;
@@ -16,9 +16,14 @@ public class Enemy : MonoBehaviour
     private void Start() {
         headingHouse = true;
         couch = null;
+
+        // Start speed values
+        moveSpeed = 0.25f;
+
+        RandomizeSpeed();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         if (headingHouse) {
             transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
         } else {
@@ -58,5 +63,9 @@ public class Enemy : MonoBehaviour
             GameObject target = GameObject.FindWithTag("Couch");
             couch = target;
         }
+    }
+
+    public void RandomizeSpeed() {
+        moveSpeed = Random.Range(0.5f, GameManager.Instance.maxSpeed);
     }
 }

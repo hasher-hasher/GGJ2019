@@ -6,10 +6,12 @@
     - [ ] Develop complexity with time system.
 - [x] Combat System
     - [x] Kill enemy when right button is pressed
-- [ ] Spawn System
+- [x] Spawn System
     - [x] Spawn Enemy
     - [x] Sort combination of character with adjective
-    - [ ] Develop complexity with time system.
+    - REMOVED [ ] Develop complexity with time system.
 - [ ] Audio System
     - [ ] Develop component that play the backingtrack component
+- [ ] Feedback System
+    - [ ]
     
