@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
-    public List<string> currentLetters = new List<string>();
+    // List of available letters
 
-    public bool AlreadySorted(string SortedLetter) {
-        return true;
-    }
+    public List<string> listOfKeys = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "w", "x", "z" };
+    // List of removed letters
+    public List<string> outKeys = new List<string>();
 }

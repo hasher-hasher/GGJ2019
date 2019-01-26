@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerInputManager : MonoBehaviour
 {
-    // List of available letters
-    [HideInInspector]
-    public List<string> listOfKeys = new List<string> {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "y", "w", "x", "z"};
+    // Pai - Q e W
+    // Filha - V e B
+    // Mae - O e P
 
     // Every x seconds the sort method will be called
     public float letterSortRate = 0;
@@ -26,11 +26,13 @@ public class PlayerInputManager : MonoBehaviour
     // Second button Text component
     public Text secondButtonText;
 
+    public string firstButtonDefault;
+    public string secondButtonDefault;
+
     private void Start() {
         letterSortRate = 10;
 
-        SortLetter("first");
-        SortLetter("second");
+        Setup();
     }
     
     private void Update() {
@@ -47,11 +49,19 @@ public class PlayerInputManager : MonoBehaviour
     public void SortLetter(string firstOrSecondButton) {
         switch(firstOrSecondButton) {
             case "first":
-                firstSortedButton = listOfKeys[Random.Range(0, listOfKeys.Count - 1)];
+                // Append the last sorted letter to the main list
+                AddToMainList(firstSortedButton);
+                firstSortedButton = GameManager.Instance.listOfKeys[Random.Range(0, GameManager.Instance.listOfKeys.Count - 1)];
+                // Remove the new sorted letter from the main list
+                RemoveFromMainList(firstSortedButton);
                 RenderButton();
             break;
             case "second":
-                secondSortedButton = listOfKeys[Random.Range(0, listOfKeys.Count - 1)];
+                // Append the last sorted letter to the main list
+                AddToMainList(secondSortedButton);
+                secondSortedButton = GameManager.Instance.listOfKeys[Random.Range(0, GameManager.Instance.listOfKeys.Count - 1)];
+                // Remove the new sorted letter from the main list
+                RemoveFromMainList(secondSortedButton);
                 RenderButton();
             break;
             default:
@@ -61,6 +71,28 @@ public class PlayerInputManager : MonoBehaviour
     }
 
     public void RenderButton() {
+        firstButtonText.GetComponent<Text>().text = firstSortedButton;
+        secondButtonText.GetComponent<Text>().text = secondSortedButton;
+    }
+
+    public void RemoveFromMainList(string letterToRemove) {
+        GameManager.Instance.listOfKeys.Remove(letterToRemove);
+        GameManager.Instance.outKeys.Add(letterToRemove);
+    }
+
+    public void AddToMainList(string letterToAppend) {
+        GameManager.Instance.outKeys.Remove(letterToAppend);
+        GameManager.Instance.listOfKeys.Add(letterToAppend);
+    }
+
+    // Setup keys and render on startup
+    public void Setup() {
+        firstSortedButton = firstButtonDefault;
+        secondSortedButton = secondButtonDefault;
+
+        RemoveFromMainList(firstSortedButton);
+        RemoveFromMainList(secondSortedButton);
+
         firstButtonText.GetComponent<Text>().text = firstSortedButton;
         secondButtonText.GetComponent<Text>().text = secondSortedButton;
     }
