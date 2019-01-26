@@ -1,6 +1,6 @@
 - [ ] Input System
     - [x] Sort letter to press
-    - [ ] Check if the number was sorted on another random
+    - [x] Check if the number was sorted on another random
     - [ ] Detect if sorted button was pressed
     - [ ] Change character position when button pressed
     - [ ] Develop complexity with time system.
