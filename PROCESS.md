@@ -1,9 +1,9 @@
-- [ ] Input System
+- [x] Input System
     - [x] Sort letter to press
     - [x] Check if the number was sorted on another random
     - [x] Detect if sorted button was pressed
     - REMOVED [ ] Change character position when button pressed
-    - [ ] Develop complexity with time system.
+    - [x] Develop complexity with time system.
 - [x] Combat System
     - [x] Kill enemy when right button is pressed
 - [x] Spawn System
@@ -12,6 +12,7 @@
     - REMOVED [ ] Develop complexity with time system.
 - [ ] Audio System
     - [ ] Develop component that play the backingtrack component
-- [ ] Feedback System
-    - [ ]
+- [x] Feedback System
+    - [x] How much on the couch counter
+    - [x] How much dead
     

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Linq;
 
 public class GameManager : Singleton<GameManager>
@@ -19,9 +20,19 @@ public class GameManager : Singleton<GameManager>
 
     private float timer;
 
+    private int howMuchDead;
+
+    private int howMuchOnCouch;
+
+    public Text CouchUI;
+    public Text DeadUI;
+
     void Start() {
         // Initial value for maxSpeed
         maxSpeed = 0.5f;
+
+        howMuchOnCouch = 0;
+        howMuchDead = 0;
     }
 
     void Update() {
@@ -39,6 +50,23 @@ public class GameManager : Singleton<GameManager>
 
     public string Adjectives() {
         return adjectives[Random.Range(0, adjectives.Count - 1)];
+    }
+
+    public void AddDead() {
+        howMuchDead++;
+        Render();
+    }
+
+    public void AddCouch()
+    {
+        howMuchOnCouch++;
+        Render();
+    }
+
+    // Refresh UI
+    public void Render() {
+        DeadUI.text = "Mortos: " + howMuchDead;
+        CouchUI.text = "No sofá: " + howMuchOnCouch;
     }
 
 
