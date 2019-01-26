@@ -20,6 +20,8 @@ public class KillManager : MonoBehaviour
     public void Kill() {
         if (someoneInside) {
             Destroy(enemy);
+            // Add on howMuchDead
+            GameManager.Instance.AddDead();
             print("Destroooooooooooooooy");
         } else {
             print("Nobody's here!");
