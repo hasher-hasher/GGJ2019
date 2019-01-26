@@ -4,8 +4,8 @@
     - [x] Detect if sorted button was pressed
     - REMOVED [ ] Change character position when button pressed
     - [ ] Develop complexity with time system.
-- [ ] Combat System
-    - [ ] Kill enemy when right button is pressed
+- [x] Combat System
+    - [x] Kill enemy when right button is pressed
 - [ ] Spawn System
     - [x] Spawn Enemy
     - [x] Sort combination of character with adjective
