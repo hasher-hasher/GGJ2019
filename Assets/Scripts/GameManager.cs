@@ -15,6 +15,24 @@ public class GameManager : Singleton<GameManager>
 
     public List<string> adjectives;
 
+    public float maxSpeed;
+
+    private float timer;
+
+    void Start() {
+        // Initial value for maxSpeed
+        maxSpeed = 0.5f;
+    }
+
+    void Update() {
+        timer += Time.deltaTime;
+        if (timer >= 15f) {
+            print("Aumentou");
+            maxSpeed += 0.25f;
+            timer = 0;
+        }
+    }
+
     public Parents GetParents() {
         return parents[Random.Range(0, parents.Count - 1)];
     }
@@ -22,6 +40,8 @@ public class GameManager : Singleton<GameManager>
     public string Adjectives() {
         return adjectives[Random.Range(0, adjectives.Count - 1)];
     }
+
+
 }
 
 [System.Serializable]

@@ -43,20 +43,22 @@ public class PlayerInputManager : MonoBehaviour
     
     private void Update() {
         if (Input.GetKeyDown(firstSortedButton)) {
-            SortLetter("first");
+            SortLetter("first", true);
         }
 
         if (Input.GetKeyDown(secondSortedButton))
         {
-            SortLetter("second");
+            SortLetter("second", true);
         }
     }
 
-    public void SortLetter(string firstOrSecondButton) {
+    public void SortLetter(string firstOrSecondButton, bool pressed = false) {
         switch(firstOrSecondButton) {
             case "first":
-                // Run Kill() function of button
-                firstButton.GetComponent<KillManager>().Kill();
+                if (pressed) {
+                    // Run Kill() function of button
+                    firstButton.GetComponent<KillManager>().Kill();
+                }
                 // Append the last sorted letter to the main list
                 AddToMainList(firstSortedButton);
                 firstSortedButton = GameManager.Instance.listOfKeys[Random.Range(0, GameManager.Instance.listOfKeys.Count - 1)];

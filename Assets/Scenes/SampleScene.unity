@@ -2043,8 +2043,8 @@ MonoBehaviour:
   secondButtonText: {fileID: 1236083848}
   firstButton: {fileID: 289356912}
   secondButton: {fileID: 1886291419}
-  firstButtonDefault: u
-  secondButtonDefault: a
+  firstButtonDefault: v
+  secondButtonDefault: b
 --- !u!1 &1577104388
 GameObject:
   m_ObjectHideFlags: 0

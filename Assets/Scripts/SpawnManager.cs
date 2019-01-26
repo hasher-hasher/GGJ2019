@@ -26,30 +26,29 @@ public class SpawnManager : MonoBehaviour
     private void Start() {
         timer = 0;
         canvas = GameObject.Find("Canvas");
+
+        spawnRate = 4f;
+        Spawn();
     }
 
     private void Update() {
         timer += Time.deltaTime;
         if (timer >= spawnRate) {
-            // Spawn
-            GameObject instantiatedObj = Instantiate(enemyToSpawn, transform.position, Quaternion.identity, canvas.transform);
-            // Setting up direction
-            instantiatedObj.GetComponent<Enemy>().SetupDirection((int)direction);
-            instantiatedObj.GetComponent<Enemy>().moveSpeed = moveSpeed;
-            var parent = GameManager.Instance.GetParents();
-            // Setting up Sprite
-            instantiatedObj.GetComponent<SpriteRenderer>().sprite = parent.sprite;
-            // Setting name
-            print(parent.name + " " +GameManager.Instance.Adjectives());
+            Spawn();
             timer = 0;
         }
     }
 
-    // private void OnTriggerEnter2D(Collider2D other)
-    // {
-    //     if (other.tag == "Enemy")
-    //     {
-    //         print("É hora do pau");
-    //     }
-    // }
+    public void Spawn() {
+        // Spawn
+        GameObject instantiatedObj = Instantiate(enemyToSpawn, transform.position, Quaternion.identity, canvas.transform);
+        // Setting up direction
+        instantiatedObj.GetComponent<Enemy>().SetupDirection((int)direction);
+        // instantiatedObj.GetComponent<Enemy>().moveSpeed = moveSpeed;
+        var parent = GameManager.Instance.GetParents();
+        // Setting up Sprite
+        instantiatedObj.GetComponent<SpriteRenderer>().sprite = parent.sprite;
+        // Setting name
+        // print(parent.name + " " +GameManager.Instance.Adjectives());
+    }
 }
