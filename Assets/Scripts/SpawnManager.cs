@@ -4,15 +4,44 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public enum Direction {
+        Right = 4,
+        Left = 3,
+        Up = 1,
+        Down = 2
+    };
+
+    public Direction direction;
+
+    public GameObject enemyToSpawn;
+
+    public float spawnRate;
+
+    public float moveSpeed = 0;
+
+    private float timer;
+
+    private GameObject canvas;
+
+    private void Start() {
+        timer = 0;
+        canvas = GameObject.Find("Canvas");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Update() {
+        timer += Time.deltaTime;
+        if (timer >= spawnRate) {
+            // Spawn
+            GameObject instantiatedObj = Instantiate(enemyToSpawn, transform.position, Quaternion.identity, canvas.transform);
+            // Setting up direction
+            instantiatedObj.GetComponent<Enemy>().SetupDirection((int)direction);
+            instantiatedObj.GetComponent<Enemy>().moveSpeed = moveSpeed;
+            var parent = GameManager.Instance.GetParents();
+            // Setting up Sprite
+            instantiatedObj.GetComponent<SpriteRenderer>().sprite = parent.sprite;
+            // Setting name
+            print(parent.name + " " +GameManager.Instance.Adjectives());
+            timer = 0;
+        }
     }
 }

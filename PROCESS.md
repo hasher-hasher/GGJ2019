@@ -1,14 +1,14 @@
 - [ ] Input System
     - [x] Sort letter to press
     - [x] Check if the number was sorted on another random
-    - [ ] Detect if sorted button was pressed
-    - [ ] Change character position when button pressed
+    - [x] Detect if sorted button was pressed
+    - REMOVED [ ] Change character position when button pressed
     - [ ] Develop complexity with time system.
 - [ ] Combat System
     - [ ] Kill enemy when right button is pressed
 - [ ] Spawn System
-    - [ ] Spawn Enemy
-    - [ ] Sort combination of character with adjective
+    - [x] Spawn Enemy
+    - [x] Sort combination of character with adjective
     - [ ] Develop complexity with time system.
 - [ ] Audio System
     - [ ] Develop component that play the backingtrack component
