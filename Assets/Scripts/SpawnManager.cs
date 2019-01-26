@@ -44,4 +44,12 @@ public class SpawnManager : MonoBehaviour
             timer = 0;
         }
     }
+
+    // private void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.tag == "Enemy")
+    //     {
+    //         print("É hora do pau");
+    //     }
+    // }
 }

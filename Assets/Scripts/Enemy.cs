@@ -8,8 +8,22 @@ public class Enemy : MonoBehaviour
 
     public float moveSpeed = 0f;
 
+    // Is the enemy heading the house?
+    public bool headingHouse;
+
+    private GameObject couch;
+
+    private void Start() {
+        headingHouse = true;
+        couch = null;
+    }
+
     private void Update() {
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        if (headingHouse) {
+            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        } else {
+            transform.position = Vector2.MoveTowards(transform.position, couch.transform.position, moveSpeed * Time.deltaTime);
+        }
     }
 
     public void SetupDirection(int direction) {
@@ -33,6 +47,16 @@ public class Enemy : MonoBehaviour
             default:
                 print("Error");
             break;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Button")
+        {
+            headingHouse = false;
+            GameObject target = GameObject.FindWithTag("Couch");
+            couch = target;
         }
     }
 }

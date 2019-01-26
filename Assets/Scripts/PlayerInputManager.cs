@@ -26,6 +26,12 @@ public class PlayerInputManager : MonoBehaviour
     // Second button Text component
     public Text secondButtonText;
 
+    // First button Game Object component
+    public GameObject firstButton;
+    // Second button Game Object component
+
+    public GameObject secondButton;
+
     public string firstButtonDefault;
     public string secondButtonDefault;
 
@@ -49,6 +55,8 @@ public class PlayerInputManager : MonoBehaviour
     public void SortLetter(string firstOrSecondButton) {
         switch(firstOrSecondButton) {
             case "first":
+                // Run Kill() function of button
+                firstButton.GetComponent<KillManager>().Kill();
                 // Append the last sorted letter to the main list
                 AddToMainList(firstSortedButton);
                 firstSortedButton = GameManager.Instance.listOfKeys[Random.Range(0, GameManager.Instance.listOfKeys.Count - 1)];
@@ -57,6 +65,8 @@ public class PlayerInputManager : MonoBehaviour
                 RenderButton();
             break;
             case "second":
+                // Run Kill() function of button
+                secondButton.GetComponent<KillManager>().Kill();
                 // Append the last sorted letter to the main list
                 AddToMainList(secondSortedButton);
                 secondSortedButton = GameManager.Instance.listOfKeys[Random.Range(0, GameManager.Instance.listOfKeys.Count - 1)];
