@@ -9,6 +9,7 @@ public class CouchManager : MonoBehaviour
         if (other.tag == "Enemy")
         {
             GameManager.Instance.AddCouch();
+            other.GetComponent<AudioSource>().Play();
         }
     }
 }
