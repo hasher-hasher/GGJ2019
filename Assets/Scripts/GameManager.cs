@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
 
     public List<Parents> parents;
 
-    public List<string> adjectives;
+    public List<Adjectives> adjectives;
 
     public float maxSpeed;
 
@@ -74,6 +74,11 @@ public class GameManager : Singleton<GameManager>
             gameOver.SetActive(true);
             isPlaying = false;
             GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 7;
+            GameObject.Find("Steps").GetComponent<AudioSource>().Stop();
+            GameObject.Find("Mortos").GetComponent<Text>().text = "SCORE: " + howMuchDead;
+            foreach (GameObject x in GameObject.FindGameObjectsWithTag("DeleteSubtitle")) {
+                Destroy(x);
+            }
         }
     }
 
@@ -81,7 +86,7 @@ public class GameManager : Singleton<GameManager>
         return parents[Random.Range(0, parents.Count - 1)];
     }
 
-    public string Adjectives() {
+    public Adjectives Adjectives() {
         return adjectives[Random.Range(0, adjectives.Count - 1)];
     }
 
@@ -98,8 +103,8 @@ public class GameManager : Singleton<GameManager>
 
     // Refresh UI
     public void Render() {
-        DeadUI.text = "Mortos: " + howMuchDead;
-        CouchUI.text = "No sofá: " + howMuchOnCouch;
+        DeadUI.text = "SCORE: " + howMuchDead;
+        CouchUI.text = "INVASORES: " + howMuchOnCouch;
     }
 
 
@@ -109,4 +114,19 @@ public class GameManager : Singleton<GameManager>
 public class Parents {
     public string name;
     public RuntimeAnimatorController controller;
+}
+
+[System.Serializable]
+public class Adjectives {
+    public string name;
+    public List<AudioClip> clips;
+
+    public AudioClip RandomClip()
+    {
+        try {
+            return clips[Random.Range(0, clips.Count - 1)];
+        } catch {
+            return null;
+        }
+    }
 }

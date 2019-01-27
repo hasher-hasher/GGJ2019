@@ -32,7 +32,7 @@ public class SpawnManager : MonoBehaviour
         Spawn();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         timer += Time.deltaTime;
         if (timer >= spawnRate) {
             Spawn();
@@ -47,13 +47,16 @@ public class SpawnManager : MonoBehaviour
         instantiatedObj.GetComponent<Enemy>().SetupDirection((int)direction);
         // instantiatedObj.GetComponent<Enemy>().moveSpeed = moveSpeed;
         var parent = GameManager.Instance.GetParents();
+        var adjective = GameManager.Instance.Adjectives();
         // Setting up Sprite
         instantiatedObj.GetComponent<Animator>().runtimeAnimatorController = parent.controller;
-        // Setting name
-        // print(parent.name + " " +GameManager.Instance.Adjectives());
         // Setting up scale
         instantiatedObj.transform.localScale = new Vector3(15f, 15f, 15f);
         // Setting up text
-        instantiatedObj.transform.GetChild(0).GetComponent<Text>().text = parent.name + " " + GameManager.Instance.Adjectives();
+        instantiatedObj.transform.GetChild(0).GetComponent<Text>().text = parent.name + " " + adjective.name;
+        // Setting up sorted audio clip for the end
+        instantiatedObj.GetComponent<AudioSource>().clip = adjective.RandomClip();
+        print("Spawnou");
+        // timer = 0;
     }
 }
