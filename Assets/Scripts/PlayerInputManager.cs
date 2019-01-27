@@ -28,27 +28,36 @@ public class PlayerInputManager : MonoBehaviour
 
     // First button Game Object component
     public GameObject firstButton;
-    // Second button Game Object component
 
+    // Second button Game Object component
     public GameObject secondButton;
 
     public string firstButtonDefault;
     public string secondButtonDefault;
 
+    private Animator anim;
+
     private void Start() {
         letterSortRate = 10;
+
+        anim = transform.GetChild(0).GetComponent<Animator>();
+        print(anim.runtimeAnimatorController);
 
         Setup();
     }
     
     private void Update() {
-        if (Input.GetKeyDown(firstSortedButton)) {
-            SortLetter("first", true);
-        }
+        if (GameManager.Instance.isPlaying) {
+            if (Input.GetKeyDown(firstSortedButton)) {
+                SortLetter("first", true);
+                anim.SetTrigger("Attack");
+            }
 
-        if (Input.GetKeyDown(secondSortedButton))
-        {
-            SortLetter("second", true);
+            if (Input.GetKeyDown(secondSortedButton))
+            {
+                SortLetter("second", true);
+                anim.SetTrigger("Attack");
+            }
         }
     }
 
