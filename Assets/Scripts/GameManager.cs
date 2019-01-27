@@ -27,12 +27,25 @@ public class GameManager : Singleton<GameManager>
     public Text CouchUI;
     public Text DeadUI;
 
+    // Pause gameObject
+    public GameObject pause;
+    public GameObject gameOver;
+
+    // Is the gameplay running?
+    public bool isPlaying;
+
     void Start() {
         // Initial value for maxSpeed
         maxSpeed = 0.5f;
 
         howMuchOnCouch = 0;
         howMuchDead = 0;
+
+        isPlaying = true;
+        Time.timeScale = 1f;
+
+        // Reset order in layer
+        GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 5;
     }
 
     void Update() {
@@ -41,6 +54,26 @@ public class GameManager : Singleton<GameManager>
             print("Aumentou");
             maxSpeed += 0.25f;
             timer = 0;
+        }
+
+        // Pause handler
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (!pause.activeSelf) {
+                Time.timeScale = 0f;
+                GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 7;
+            } else {
+                Time.timeScale = 1f;
+                GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 5;
+            }
+            pause.SetActive(!pause.activeSelf);
+        }
+
+        // Game Over
+        if (howMuchOnCouch >= 5) {
+            Time.timeScale = 0f;
+            gameOver.SetActive(true);
+            isPlaying = false;
+            GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 7;
         }
     }
 
@@ -75,5 +108,5 @@ public class GameManager : Singleton<GameManager>
 [System.Serializable]
 public class Parents {
     public string name;
-    public Sprite sprite;
+    public RuntimeAnimatorController controller;
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -25,9 +26,9 @@ public class SpawnManager : MonoBehaviour
 
     private void Start() {
         timer = 0;
-        canvas = GameObject.Find("Canvas");
+        canvas = GameObject.Find("Enemies");
 
-        spawnRate = 4f;
+        spawnRate = 6f;
         Spawn();
     }
 
@@ -47,8 +48,12 @@ public class SpawnManager : MonoBehaviour
         // instantiatedObj.GetComponent<Enemy>().moveSpeed = moveSpeed;
         var parent = GameManager.Instance.GetParents();
         // Setting up Sprite
-        instantiatedObj.GetComponent<SpriteRenderer>().sprite = parent.sprite;
+        instantiatedObj.GetComponent<Animator>().runtimeAnimatorController = parent.controller;
         // Setting name
         // print(parent.name + " " +GameManager.Instance.Adjectives());
+        // Setting up scale
+        instantiatedObj.transform.localScale = new Vector3(15f, 15f, 15f);
+        // Setting up text
+        instantiatedObj.transform.GetChild(0).GetComponent<Text>().text = parent.name + " " + GameManager.Instance.Adjectives();
     }
 }

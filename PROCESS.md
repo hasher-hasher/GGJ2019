@@ -15,4 +15,7 @@
 - [x] Feedback System
     - [x] How much on the couch counter
     - [x] How much dead
+- [ ] Game Over
+    - [x] Pause Menu
+    - [x] Game Over Menu
     
