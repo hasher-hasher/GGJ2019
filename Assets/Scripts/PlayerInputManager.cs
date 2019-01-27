@@ -41,7 +41,7 @@ public class PlayerInputManager : MonoBehaviour
         letterSortRate = 10;
 
         anim = transform.GetChild(0).GetComponent<Animator>();
-        print(anim.runtimeAnimatorController);
+        // print(anim.runtimeAnimatorController);
 
         Setup();
     }

@@ -67,6 +67,6 @@ public class Enemy : MonoBehaviour
 
     public void RandomizeSpeed() {
         moveSpeed = Random.Range(0.25f, GameManager.Instance.maxSpeed);
-        print(moveSpeed);
+        // print(moveSpeed);
     }
 }

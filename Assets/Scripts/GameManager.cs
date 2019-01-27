@@ -75,7 +75,7 @@ public class GameManager : Singleton<GameManager>
             isPlaying = false;
             GameObject.Find("Canvas").GetComponent<Canvas>().sortingOrder = 7;
             GameObject.Find("Steps").GetComponent<AudioSource>().Stop();
-            GameObject.Find("Mortos").GetComponent<Text>().text = "Familiares Eliminados: " + howMuchDead;
+            GameObject.Find("Mortos").GetComponent<Text>().text = "SCORE: " + howMuchDead;
             foreach (GameObject x in GameObject.FindGameObjectsWithTag("DeleteSubtitle")) {
                 Destroy(x);
             }
@@ -103,8 +103,8 @@ public class GameManager : Singleton<GameManager>
 
     // Refresh UI
     public void Render() {
-        DeadUI.text = "Mortos: " + howMuchDead;
-        CouchUI.text = "No sofá: " + howMuchOnCouch;
+        DeadUI.text = "SCORE: " + howMuchDead;
+        CouchUI.text = "INVASORES: " + howMuchOnCouch;
     }
 
 
@@ -123,6 +123,10 @@ public class Adjectives {
 
     public AudioClip RandomClip()
     {
-        return clips[Random.Range(0, clips.Count - 1)];
+        try {
+            return clips[Random.Range(0, clips.Count - 1)];
+        } catch {
+            return null;
+        }
     }
 }

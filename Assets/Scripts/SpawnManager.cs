@@ -32,7 +32,7 @@ public class SpawnManager : MonoBehaviour
         Spawn();
     }
 
-    private void Update() {
+    private void FixedUpdate() {
         timer += Time.deltaTime;
         if (timer >= spawnRate) {
             Spawn();
@@ -56,5 +56,7 @@ public class SpawnManager : MonoBehaviour
         instantiatedObj.transform.GetChild(0).GetComponent<Text>().text = parent.name + " " + adjective.name;
         // Setting up sorted audio clip for the end
         instantiatedObj.GetComponent<AudioSource>().clip = adjective.RandomClip();
+        print("Spawnou");
+        // timer = 0;
     }
 }
